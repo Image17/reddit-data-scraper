@@ -57,14 +57,15 @@ def clean_duplicates():
     print()
 
 """
-Make subreddits a command line argument
+Takes command line arguments of subreddit names, uses praw api to retrieve ~1000
+comments and writes them to the local filesystem
 """
 def main():
-    print("scraping")
-    #scrape('Kanye')
-    #scrape('The_Donald')
-    for arg in sys.argv:
-        print (arg)
+    print("mining has begun")
+    for subreddit in sys.argv:
+        print('scraping ' + subreddit + '. . .')
+        scrape(subreddit)
+        print('scraping ' + subreddit + ' completed!')
     print('completed')
 
 if __name__ == '__main__':
