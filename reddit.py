@@ -61,7 +61,7 @@ Takes command line arguments of subreddit names, uses praw api to retrieve ~1000
 comments and writes them to the local filesystem
 """
 def main():
-    print("mining has begun")
+    print("scraping has begun")
     for subreddit in sys.argv[1:]:
         print('scraping ' + subreddit + '. . .')
         scrape(subreddit)
