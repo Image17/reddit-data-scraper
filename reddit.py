@@ -62,7 +62,7 @@ comments and writes them to the local filesystem
 """
 def main():
     print("mining has begun")
-    for subreddit in sys.argv:
+    for subreddit in sys.argv[1:]:
         print('scraping ' + subreddit + '. . .')
         scrape(subreddit)
         print('scraping ' + subreddit + ' completed!')
