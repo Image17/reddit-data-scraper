@@ -9,6 +9,7 @@ import sys
 import praw
 import config
 import csv
+import glob
 
 """
 Login to reddit through praw to provide a session for the scraper
@@ -54,7 +55,25 @@ may have been retrieved twice.  Adjust the scheduling of the scraping to limit
 duplicates.
 """         
 def clean_duplicates():
-    print()
+    files = glob.glob("reddit/*.*")
+    for file in files:
+        print('cleaning '+file)
+        comments=[]
+        with open(file, newline='', encoding='UTF-8-sig') as csvfile:
+            spamreader = csv.reader(csvfile, delimiter='|')
+            for row in spamreader:
+                comment=[]
+                if row not in comments:
+                    for i in row:
+                        comment.append(i)
+                    comments.append(comment)
+        print(len(comments))
+        
+        with open (file, 'w', newline='') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter='|')
+            csvfile.truncate()
+            for c in comments:
+                csv_writer.writerow(c)
 
 """
 Takes command line arguments of subreddit names, uses praw api to retrieve ~1000
